@@ -1,0 +1,174 @@
+{
+  "categories": [
+    {
+      "name": "CBC Radio One",
+      "stations": [
+        {
+          "name": "Calgary",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_CGY_H.pls"
+        },
+        {
+          "name": "Charlottetown",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_CHR_H.pls"
+        },
+        {
+          "name": "Corner Brook",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_COR_H.pls"
+        },
+        {
+          "name": "Edmonton",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_EDM_H.pls"
+        },
+        {
+          "name": "Fredericton",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_FRD_H.pls"
+        },
+        {
+          "name": "Labrador",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_GBA_H.pls"
+        },
+        {
+          "name": "Grand Falls/Gander",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_GFA_H.pls"
+        },
+        {
+          "name": "Halifax",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_HFX_H.pls"
+        },
+        {
+          "name": "Inuvik",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_INK_H.pls"
+        },
+        {
+          "name": "Iqaluit",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_IQA_H.pls"
+        },
+        {
+          "name": "Kelowna",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_KEL_H.pls"
+        },
+        {
+          "name": "London",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_LDN_H.pls"
+        },
+        {
+          "name": "Moncton",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_MCT_H.pls"
+        },
+        {
+          "name": "Montréal",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_MTL_H.pls"
+        },
+        {
+          "name": "Nord Quebec",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_N_MTL_H.pls"
+        },
+        {
+          "name": "Ottawa",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_OTT_H.pls"
+        },
+        {
+          "name": "Prince George",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_PRG_H.pls"
+        },
+        {
+          "name": "Québec City",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_QQU_H.pls"
+        },
+        {
+          "name": "Regina",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_REG_H.pls"
+        },
+        {
+          "name": "Saint John",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_SNB_H.pls"
+        },
+        {
+          "name": "St. John's",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_SNF_H.pls"
+        },
+        {
+          "name": "Sudbury",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_SUD_H.pls"
+        },
+        {
+          "name": "Sydney",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_SYD_H.pls"
+        },
+        {
+          "name": "Thunder Bay",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_TBA_H.pls"
+        },
+        {
+          "name": "Toronto",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_TOR_H.pls"
+        },
+        {
+          "name": "Vancouver",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_VCR_H.pls"
+        },
+        {
+          "name": "Victoria",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_VIC_H.pls"
+        },
+        {
+          "name": "Windsor",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_WDR_H.pls"
+        },
+        {
+          "name": "Whitehorse",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_WHS_H.pls"
+        },
+        {
+          "name": "Winnipeg",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_WPG_H.pls"
+        },
+        {
+          "name": "Yellowknife",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_YKN_H.pls"
+        }
+      ]
+    },
+    {
+      "name": "CBC Radio Two",
+      "stations": [
+        {
+          "name": "Mountain",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_EDM_H.pls"
+        },
+        {
+          "name": "Atlantic",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_HFX_H.pls"
+        },
+        {
+          "name": "Eastern",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_TOR_H.pls"
+        },
+        {
+          "name": "Pacific",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_VCR_H.pls"
+        },
+        {
+          "name": "Central",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_WPG_H.pls"
+        },
+        {
+          "name": "CBC Classical",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_CLASS_H.pls"
+        },
+        {
+          "name": "CBC Canadian Composers",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_COMP_H.pls"
+        },
+        {
+          "name": "CBC Jazz",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_JAZZ_H.pls"
+        },
+        {
+          "name": "CBC Canadian Songwriters",
+          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_SING_H.pls"
+        }
+      ]
+    }
+  ]
+}
