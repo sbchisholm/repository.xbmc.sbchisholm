@@ -58,6 +58,7 @@ def main():
   elif category and subcategory:
     category = urllib.unquote(category)
     subcategory = urllib.unquote(subcategory)
+    print 'category:', category, 'subcategory:', subcategory
     for category_item in station_data['categories']:
       if category_item['name'] == category:
         for subcategory_item in category_item['subcategories']:
@@ -68,6 +69,7 @@ def main():
               xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
                                           url = u, listitem = liz,
                                           isFolder = False)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
   elif category:
     print 'showing stream from', category
