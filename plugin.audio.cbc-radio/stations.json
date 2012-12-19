@@ -226,27 +226,6 @@
           "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_VCR_H.pls"
         }
       ]
-    },
-    {
-      "name": "CBC Radio Two - Internet Stations",
-      "stations": [
-        {
-          "name": "CBC Classical",
-          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_CLASS_H.pls"
-        },
-        {
-          "name": "CBC Canadian Composers",
-          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_COMP_H.pls"
-        },
-        {
-          "name": "CBC Jazz",
-          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_JAZZ_H.pls"
-        },
-        {
-          "name": "CBC Canadian Songwriters",
-          "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_SING_H.pls"
-        }
-      ]
     }
   ]
 }

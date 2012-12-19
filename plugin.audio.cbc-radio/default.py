@@ -90,7 +90,7 @@ def main():
             liz = xbmcgui.ListItem(subcategory_item['name'])
             xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
                                         url = u, listitem = liz,
-                                        isFolder = False)
+                                        isFolder = True)
 
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
   else:
