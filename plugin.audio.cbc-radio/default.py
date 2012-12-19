@@ -84,8 +84,7 @@ def main():
                                         isFolder = False)
         else:
           for subcategory_item in category_item['subcategories']:
-            u = sys.argv[0] + '?category=' + category 
-                            + '&subcategory=' + subcategory_item['name']
+            u = sys.argv[0] + '?category=' + category + '&subcategory=' + subcategory_item['name']
             liz = xbmcgui.ListItem(subcategory_item['name'])
             xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
                                         url = u, listitem = liz,
