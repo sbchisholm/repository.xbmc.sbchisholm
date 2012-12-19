@@ -45,6 +45,7 @@ def url_query_to_dict(url):
 def main():
   params = url_query_to_dict(sys.argv[2])
   category = params.get('category')
+  subcategory = params.get('subcategory')
   stream = params.get('stream')
   station_data = json.loads(open(os.path.join(__home__, 'stations.json'), 'r').read())
 
@@ -54,18 +55,42 @@ def main():
     stream = urllib.url2pathname(stream)
     xbmc.Player().play(stream)
 
+  elif category and subcategory:
+    category = urllib.unquote(category)
+    subcategory = urllib.unquote(subcategory)
+    for category_item in station_data['categories']:
+      if category_item['name'] == category:
+        for subcategory_item in category_item['subcategories']:
+          if subcategory_item['name'] == subcategory:
+            for station in subcategory_item['stations']:
+              u = sys.argv[0] + '?' + urllib.urlencode({'stream':station['url']})
+              liz = xbmcgui.ListItem(station['name'])
+              xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
+                                          url = u, listitem = liz,
+                                          isFolder = False)
+
   elif category:
     print 'showing stream from', category
     category = urllib.unquote(category)
     # list all the stations in the category
     for category_item in station_data['categories']:
       if category_item['name'] == category:
-        for station in category_item['stations']:
-           u = sys.argv[0] + '?' + urllib.urlencode({'stream':station['url']})
-           liz = xbmcgui.ListItem(station['name'])
-           xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
-                                       url = u, listitem = liz,
-                                       isFolder = False)
+        if category_item.has_key('stations'):
+          for station in category_item['stations']:
+            u = sys.argv[0] + '?' + urllib.urlencode({'stream':station['url']})
+            liz = xbmcgui.ListItem(station['name'])
+            xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
+                                        url = u, listitem = liz,
+                                        isFolder = False)
+        else:
+          for subcategory_item in category_item['subcategories']:
+            u = sys.argv[0] + '?category=' + category 
+                            + '&subcategory=' + subcategory_item['name']
+            liz = xbmcgui.ListItem(subcategory_item['name'])
+            xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]),
+                                        url = u, listitem = liz,
+                                        isFolder = False)
+
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
   else:
     # list all of the categories

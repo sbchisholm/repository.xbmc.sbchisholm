@@ -1,2 +1,5 @@
-[B]Version 1.0.0[/B]
+[B]Version 0.0.2[/B]
 - Initial version
+[B]Version 0.0.2[/B]
+- Added sub-categories for organizing by provience 
+- Moved the cbc r2 internet stations to a separate category
