@@ -42,7 +42,7 @@ def url_query_to_dict(url):
       param[kvp[0]] = kvp[1]
   return param
 
-def build_station_listing(station):
+def build_station_listing(stations):
   ''' Build the list of station for a category '''
   for station in stations:
     u = sys.argv[0] + '?' + urllib.urlencode({'stream':station['url']})
