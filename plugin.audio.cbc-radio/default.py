@@ -51,7 +51,7 @@ def build_station_listing(station):
                                 url = u, listitem = liz,
                                 isFolder = False)
 
-def build_category_listing(categories, parent_category):
+def build_category_listing(categories, parent_category = ''):
   ''' Build the list of categories or subcategories '''
   for category_item in categories:
     if parent_category:
