@@ -226,6 +226,15 @@
           "url": "http://playerservices.streamtheworld.com/pls/CBC_R2_VCR_H.pls"
         }
       ]
+    },
+    {
+      "name": "Debug",
+      "stations": [
+        {
+          "name": "CBC_NEWWAV_H",
+          "url": "http://3143.live.streamtheworld.com/CBC_NEWWAV_H"
+        }  
+      ]
     }
   ]
 }
