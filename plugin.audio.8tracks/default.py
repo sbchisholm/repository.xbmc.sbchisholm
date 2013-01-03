@@ -95,7 +95,7 @@ elif mode == 'tags':
     Addon.add_directory({'mode': 'mixes', 'mytag': 1}, Addon.get_string(30018))
     for tag in result['tags']:
         Addon.add_directory({'mode': 'mixes', 'tag': tag['name']}, 
-                            '%s (%d)' % (tag['name'], tag['cool_taggings_count']))  
+                            '%s (%s)' % (tag['name'], tag['cool_taggings_count']))  
     Addon.add_directory({'mode': 'tags', 'page': page + 1}, 
                         Addon.get_string(30015))
 
