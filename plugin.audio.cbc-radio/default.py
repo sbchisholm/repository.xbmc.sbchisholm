@@ -53,7 +53,10 @@ def build_station_listing(stations):
 
 def build_category_listing(categories, parent_category = ''):
   ''' Build the list of categories or subcategories '''
+  print 'building category list....'
   for category_item in categories:
+    print category_item['name'], urllib.quote(category_item['name'])
+    print parent_category, urllib.quote(parent_category)
     if parent_category:
       u = sys.argv[0] + '?category=' + urllib.quote(parent_category) \
                       + '&subcategory=' + urllib.quote(category_item['name'])
