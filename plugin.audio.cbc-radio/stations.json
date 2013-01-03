@@ -111,10 +111,10 @@
           ]
         },
         {
-          "name": "Québec",
+          "name": "Quebec",
           "stations": [
             {
-              "name": "Montréal",
+              "name": "Montreal",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_MTL_H.pls"
             },
             {
@@ -122,7 +122,7 @@
               "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_N_MTL_H.pls"
             },
             {
-              "name": "Québec City",
+              "name": "Quebec City",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_R1_QQU_H.pls"
             }
           ]
