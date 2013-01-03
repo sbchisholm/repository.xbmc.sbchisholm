@@ -55,8 +55,8 @@ def build_category_listing(categories, parent_category = ''):
   ''' Build the list of categories or subcategories '''
   for category_item in categories:
     if parent_category:
-      u = sys.argv[0] + '?category=' + parent_category \
-                      + '&subcategory=' + category_item['name']
+      u = sys.argv[0] + '?category=' + urllib.quote(parent_category) \
+                      + '&subcategory=' + urllib.quote(category_item['name'])
     else:
       u = sys.argv[0] + '?category=' + category_item['name']
     liz = xbmcgui.ListItem(category_item['name'])
