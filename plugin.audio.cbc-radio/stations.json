@@ -228,12 +228,242 @@
       ]
     },
     {
-      "name": "Debug",
-      "stations": [
+      "name": "CBC Internet Radio",
+      "subcategories": [
         {
-          "name": "CBC_NEWWAV_H",
-          "url": "http://3143.live.streamtheworld.com/CBC_NEWWAV_H"
-        }  
+          "name": "Special",
+          "stations": [
+            {
+              "name": "Special",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_SPCIAL_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Radio 3",
+          "stations": [
+            {
+              "name": "Radio 3",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_R3_WEB.pls"
+            }
+          ]
+        },
+        {
+          "name": "Classical",
+          "stations": [
+            {
+              "name": "Radio 2 Classical",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_R2CLAS_H.pls"
+            },
+            {
+              "name": "Essential Classics",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ECLASS_H.pls"
+            },
+            {
+              "name": "Operatic",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_OPERAT_H.pls"
+            },
+            {
+              "name": "Baroque",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_BAROQU_H.pls"
+            },
+            {
+              "name": "Modern Masters",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_MODMAS_H.pls"
+            },
+            {
+              "name": "Orchestral",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ORCHES_H.pls"
+            },
+            {
+              "name": "Piano",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_PIANO1_H.pls"
+            },
+            {
+              "name": "Chamber",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_GGSAMP_H.pls"
+            },
+            {
+              "name": "CBC Records",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_CBCREC_H.pls"
+            },
+            {
+              "name": "Canadian Composers",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_CANCOM_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Jazz",
+          "stations": [
+            {
+              "name": "Radio 2 Jazz",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_R2JAZZ_H.pls"
+            },
+            {
+              "name": "Jazz Masters",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_JAZMAS_H.pls"
+            },
+            {
+              "name": "Jazz Songbook",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_JAZSON_H.pls"
+            },
+            {
+              "name": "Jazz Canada",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_JAZCDN_H.pls"
+            },
+            {
+              "name": "Smooth Jazz",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_JAZSMO_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Singer-Songwriter",
+          "stations": [
+            {
+              "name": "Canadian Songwriters",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_CANSON_H.pls"
+            },
+            {
+              "name": "Singer-Songwriter",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_SINSON_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "World",
+          "stations": [
+            {
+              "name": "World",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_WORLDM_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Rock",
+          "stations": [
+            {
+              "name": "Indie",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_INDIE1_H.pls"
+            },
+            {
+              "name": "Rock (with hosts)",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ROCK01_H.pls"
+            },
+            {
+              "name": "Rock Classics",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ROCKCL_H.pls"
+            },
+            {
+              "name": "Hard Rock",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_HAROCK_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Pop",
+          "stations": [
+            {
+              "name": "Pop 40",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_POP040_H.pls"
+            },
+            {
+              "name": "Adult Pop",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ADLTPO_H.pls"
+            },
+            {
+              "name": "Jukebox Favourites",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_JUKEBO_H.pls"
+            },
+            {
+              "name": "The 70s",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_70S001_H.pls"
+            },
+            {
+              "name": "The 80s",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_80S001_H.pls"
+            },
+            {
+              "name": "The 90s",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_90S001_H.pls"
+            },
+            {
+              "name": "Adult Alternative",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ADLTAL_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Blues",
+          "stations": [
+            {
+              "name": "Blues",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_BLUES1_H.pls"
+            },
+            {
+              "name": "Blues Classics",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_BLCLAS_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "R&B/Soul",
+          "stations": [
+            {
+              "name": "R&B/Soul",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_RBSOUL_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Hip Hop",
+          "stations": [
+            {
+              "name": "Hip Hop",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_HIPHOP_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Aboriginal",
+          "stations": [
+            {
+              "name": "Aboriginal",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ABORIG_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Country",
+          "stations": [
+            {
+              "name": "Country",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_CONTRY_H.pls"
+            },
+            {
+              "name": "Alternative Country",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ALTCRY_H.pls"
+            },
+            {
+              "name": "Country Classics",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_CLSCRY_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Electronic",
+          "stations": [
+            {
+              "name": "Electronic",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ELECTR_H.pls"
+            },
+            {
+              "name": "Ambient Lounge",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_AMBIEN_H.pls"
+            }
+          ]
+        }
       ]
     }
   ]
