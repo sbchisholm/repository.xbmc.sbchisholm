@@ -231,6 +231,24 @@
       "name": "CBC Internet Radio",
       "subcategories": [
         {
+          "name": "New Wave",
+          "stations": [
+            {
+              "name": "Jian's New Wave",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_NEWWAV_H.pls"
+            }
+          ]
+        },
+        {
+          "name": "Kids",
+          "stations": [
+            {
+              "name": "Kids CBC",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_KIDCBC_H.pls"
+            }
+          ]
+        },
+        {
           "name": "Special",
           "stations": [
             {
@@ -322,12 +340,20 @@
           "name": "Singer-Songwriter",
           "stations": [
             {
+              "name": "Adult Alternative",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ADLTAL_H.pls"
+            },
+            {
               "name": "Canadian Songwriters",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_CANSON_H.pls"
             },
             {
               "name": "Singer-Songwriter",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_SINSON_H.pls"
+            },
+            {
+              "name": "Canadian Roots",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_CDNRTS_H.pls"
             }
           ]
         },
@@ -337,6 +363,10 @@
             {
               "name": "World",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_WORLDM_H.pls"
+            },
+            {
+              "name": "Bollywood",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_BOLYWD_H.pls"
             }
           ]
         },
@@ -348,7 +378,7 @@
               "url": "http://playerservices.streamtheworld.com/pls/CBC_INDIE1_H.pls"
             },
             {
-              "name": "Rock (with hosts)",
+              "name": "Rock",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_ROCK01_H.pls"
             },
             {
@@ -356,7 +386,7 @@
               "url": "http://playerservices.streamtheworld.com/pls/CBC_ROCKCL_H.pls"
             },
             {
-              "name": "Hard Rock",
+              "name": "Metal",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_HAROCK_H.pls"
             }
           ]
@@ -387,10 +417,6 @@
             {
               "name": "The 90s",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_90S001_H.pls"
-            },
-            {
-              "name": "Adult Alternative",
-              "url": "http://playerservices.streamtheworld.com/pls/CBC_ADLTAL_H.pls"
             }
           ]
         },
@@ -413,14 +439,18 @@
             {
               "name": "R&B/Soul",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_RBSOUL_H.pls"
+            },
+            {
+              "name": "Classic Soul/R&B",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_SOULCL_H.pls"
             }
           ]
         },
         {
-          "name": "Hip Hop",
+          "name": "Hip-Hop",
           "stations": [
             {
-              "name": "Hip Hop",
+              "name": "Hip-Hop",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_HIPHOP_H.pls"
             }
           ]
@@ -461,6 +491,10 @@
             {
               "name": "Ambient Lounge",
               "url": "http://playerservices.streamtheworld.com/pls/CBC_AMBIEN_H.pls"
+            },
+            {
+              "name": "EDM",
+              "url": "http://playerservices.streamtheworld.com/pls/CBC_ELECT2_H.pls"
             }
           ]
         }
