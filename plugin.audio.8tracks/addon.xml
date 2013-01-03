@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.audio.8tracks" 
-  version="0.2.1" 
+  version="0.2.2" 
   name="8tracks" 
   provider-name="Chisholm, Stephen">
     <requires>
