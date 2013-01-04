@@ -67,8 +67,7 @@ class EightTracks:
                               {'mix_id': mix_id})
 
     def tags(self, page):
-        return self._get_json('tags', {'tag_page': page})
-        #return self._get_json('all/mixes/tags', {'tag_page': page})
+        return self._get_json('tags', {'page': page})
 
     def _build_url(self, path, queries={}):
         query = Addon.build_query(queries)
