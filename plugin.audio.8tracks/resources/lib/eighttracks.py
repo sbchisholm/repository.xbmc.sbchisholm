@@ -1,6 +1,7 @@
 '''
     8tracks XBMC Plugin
     Copyright (C) 2011 t0mm0
+    Copyright (C) 2013 Stephen B Chisholm
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,13 +25,15 @@ import xbmc
         
 class EightTracks:
     _BASE_URL = 'http://8tracks.com'
-    _API_KEY = '04e89b30c1ae4f38e9f7a2fc3a6c55153ba7b98f'    
+    _SECURE_BASE_URL = 'https://8tracks.com'
+    _API_KEY = 'a9c6e62af4f4bce76e73749dd071840b5d42fde0'    
     SORT_RECENT = 'recent'
     SORT_HOT = 'hot'
     SORT_POPULAR = 'popular'
     SORT_RANDOM = 'random'
+    SORT_LIKED = 'liked'
     
-    def __init__(self):
+    def __init__(self, username='', password=''):
         set_path = xbmc.translatePath(os.path.join(Addon.profile_path, 'set'))
         try:
             os.makedirs(os.path.dirname(set_path))
@@ -48,6 +51,21 @@ class EightTracks:
             self._set = self.new_set()
             f.write(self._set)
             f.close()
+
+        # get the user id
+        if username and password:
+            login = self.login(username, password)
+            if login['logged_in']:
+                self.user_id = login['current_user']['id']
+            else: 
+                Addon.show_error(['Invalid username or password.'])
+                self.user_id = 0
+        else:
+            self.user_id = 0
+        Addon.log('user_id: %s' % self.user_id)
+
+    def logged_in(self):
+        return bool(self.user_id)
     
     def new_set(self):
         return self._get_json('sets/new')['play_token']
@@ -55,6 +73,8 @@ class EightTracks:
     def mixes(self, sort='hot', tag='', search='', page=1):
         return self._get_json('mixes', {'sort': sort, 'tag': tag, 
                                         'q': search, 'page': page})
+    def liked_mixes(self, page):
+        return self._get_json('users/%d/mixes' % self.user_id, {'view': 'liked'})
 
     def play(self, mix_id):
         return self._get_json('sets/%s/play' % self._set, {'mix_id': mix_id})
@@ -65,13 +85,27 @@ class EightTracks:
     def next_mix(self, mix_id):
         return self._get_json('sets/%s/next_mix' % self._set, 
                               {'mix_id': mix_id})
+    def report_song(self, track_id, mix_id):
+        '''In order to be legal and pay royalties properly, 8tracks must report
+        every performance of every song played to SoundExchange. A "performance"
+        is counted when the 30 second mark of a song is reached. So at 30
+        seconds, you must call the following:'''
+        return self._get_json('sets/%s/report' % self._set, 
+                              {'track_id': track_id, 'mix_id': mix_id})
 
     def tags(self, page):
         return self._get_json('tags', {'page': page})
 
-    def _build_url(self, path, queries={}):
+    def login(self, username, password):
+        return self._get_json('sessions', https=True, 
+            data='login=%s&password=%s' % (username, password))
+
+    def _build_url(self, path, queries={}, https=False):
         query = Addon.build_query(queries)
-        return '%s/%s?%s' % (self._BASE_URL, path, query) 
+        if https:
+            return '%s/%s?%s' % (self._SECURE_BASE_URL, path, query) 
+        else:
+            return '%s/%s?%s' % (self._BASE_URL, path, query) 
 
     def _fetch(self, url, form_data=False):
         if form_data:
@@ -99,26 +133,40 @@ class EightTracks:
             html = False
         return html
 
-    def _get_json(self, method, queries={}):
+    def _get_json(self, method, queries={}, data='', https=False):
         json_response = None
         queries['api_key'] = self._API_KEY
-        url = self._build_url(method + '.json', queries)
+        queries['api_version'] = 2
+        url = self._build_url(method + '.json', queries, https)
         Addon.log('getting ' + url)
         try:
-            response = urllib2.urlopen(url)
+            if data:
+                response = urllib2.urlopen(url, data)
+            else:
+                response = urllib2.urlopen(url)
             try:
                 json_response = json.loads(response.read())
             except ValueError:
                 Addon.show_error([Addon.get_string(30005)])
                 return False
+        except urllib2.HTTPError, e:
+            if e.code == 422:
+                return {'logged_in': False}
+            else:
+                Addon.show_error([Addon.get_string(30006), str(e.reason)])
         except urllib2.URLError, e:
             Addon.show_error([Addon.get_string(30006), str(e.reason)])
+            return False
+
+        if json_response is None:
             return False
 
         if json_response.get('errors', None):              
             Addon.show_error(str(json_response['errors'][0]))  
             return False 
         else:
+            Addon.log(json.dumps(json_response, sort_keys=True,
+                             indent=4, separators=(',', ': ')))
             return json_response
             
             
@@ -129,24 +177,57 @@ class EightTracksPlayer(xbmc.Player):
         self.pl = Addon.get_playlist(xbmc.PLAYLIST_MUSIC, True)
         self.ended = False
         self.track_playing = False
+        self.track_id_lookup = {}
 
     def onPlayBackStarted(self):
         Addon.log('onPlayBackStarted')
-        self.add_next()
+        return super(EightTracksPlayer, self).onPlayBackStarted()
         
     def onPlayBackStopped(self):
         Addon.log('onPlayBackStopped')
         self.ended = True
+
+    def onPlayBackEnded(self):
+        Addon.log('onPlayBackEnded')
+        return super(EightTracksPlayer, self).onPlayBackEnded()
+
+    def onQueueNextItem(self):
+        Addon.log('onQueueNextItem')
+        self.add_next()
+        return super(EightTracksPlayer, self).onQueueNextItem()
         
     def play_mix(self, mix_id, mix_name, user, img):
+        track_reported = False
+        reporting_time = 30 #seconds
         Addon.log('play_mix')
         self.mix_id = mix_id
         self.mix_name = mix_name
         self.user = user
         self.img = img
         self.add_next(True)
+        #for the first time add two songs.
+        self.add_next()
         self.play(self.pl)
         while not self.ended:
+            if self.isPlaying():
+                if not track_reported and self.getTime() >= reporting_time:
+                    try:
+                        Addon.log('report track here (track_id %d, mix_id %s)' % ( 
+                                  self.track_id_lookup[self.getPlayingFile()], 
+                                  self.mix_id))
+                        self.et.report_song(
+                            self.track_id_lookup[self.getPlayingFile()], self.mix_id)
+                        track_reported = True
+                    except KeyError:
+                        Addon.log('unable to report current playing file %s' % (
+                                self.getPlayingFile()))
+                if track_reported and self.getTime() < reporting_time:
+                    Addon.log('resetting the reported flag')
+                    # reset the reported flag for the next track
+                    track_reported = False
+                Addon.log('%02d:%02d / %02d:%02d' % (
+                          self.getTime()/60, self.getTime()%60,
+                          self.getTotalTime()/60, self.getTotalTime()%60))
             Addon.log('player sleeping...')
             xbmc.sleep(1000)
         
@@ -168,12 +249,11 @@ class EightTracksPlayer(xbmc.Player):
 
         t = result['set']['track']
         comment = 'mix: %s by %s' % (self.mix_name, self.user)
+        # keep the track id for reporting later on
+        self.track_id_lookup[t['url']] = t['id']
         Addon.add_music_item(t['url'], {'title': t['name'], 
                                         'artist': t['performer'], 
                                         'comment': comment, 
                                         'album': t['release_name']},
                              img=self.img, playlist=self.pl)
-        while not self.isPlaying() and not first and not self.ended:
-            Addon.log('player sleeping (add_next)...')
-            xbmc.sleep(1000)
 

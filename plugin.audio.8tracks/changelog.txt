@@ -1,3 +1,7 @@
+[B]Version 0.2.7[/B]
+- Added song reporting for an 8tracks requirement.
+- Added user login and listing of liked mixes.
+
 [B]Version 0.2.1[/B]
 - Porting to Frodo
 

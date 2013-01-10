@@ -33,13 +33,14 @@ Addon.log('plugin url: ' + Addon.plugin_url)
 Addon.log('plugin queries: ' + str(Addon.plugin_queries))
 Addon.log('plugin handle: ' + str(Addon.plugin_handle))
 
-et = EightTracks()
+et = EightTracks(Addon.get_setting('username'), Addon.get_setting('password'))
 
 mode = Addon.plugin_queries['mode']
 play = Addon.plugin_queries['play']
 next = Addon.plugin_queries.get('next', None)
 
 if play:
+    xbmc.Player().stop()
     user = Addon.plugin_queries['user']
     img = Addon.plugin_queries['img']
     mix_name = Addon.plugin_queries['mix_name']
@@ -53,8 +54,12 @@ elif mode == 'mixes':
     search = Addon.plugin_queries.get('search', '')
     mytag = Addon.plugin_queries.get('mytag', '')
     page = int(Addon.plugin_queries.get('page', 1))
+        
     if sort:
-        result = et.mixes(sort, tag, search, page)
+        if sort == EightTracks.SORT_LIKED:
+            result = et.liked_mixes(page)
+        else:
+            result = et.mixes(sort, tag, search, page)
         mixes = result['mixes']
         for mix in mixes:
             name = '%s by %s (%s)' % (mix['name'], mix['user']['login'],
@@ -88,14 +93,21 @@ elif mode == 'mixes':
         Addon.add_directory({'mode': 'mixes', 'tag': tag, 'search': search,
                              'sort': EightTracks.SORT_POPULAR}, 
                             Addon.get_string(30013))
+        if et.logged_in():
+            Addon.add_directory({'mode': 'mixes', 'tag': tag, 'search': search,
+                                 'sort': EightTracks.SORT_LIKED}, 
+                                Addon.get_string(30019))
 
 elif mode == 'tags':
     page = int(Addon.plugin_queries.get('page', 1))
     result = et.tags(page)
     Addon.add_directory({'mode': 'mixes', 'mytag': 1}, Addon.get_string(30018))
     for tag in result['tags']:
-        Addon.add_directory({'mode': 'mixes', 'tag': tag['name']}, 
-                            '%s (%s)' % (tag['name'], tag['cool_taggings_count']))  
+        try:
+            Addon.add_directory({'mode': 'mixes', 'tag': tag['name']}, 
+                                '%s (%s)' % (tag['name'], tag['cool_taggings_count']))
+        except:
+            Addon.log("The response was not what we expected.")
     Addon.add_directory({'mode': 'tags', 'page': page + 1}, 
                         Addon.get_string(30015))
 
