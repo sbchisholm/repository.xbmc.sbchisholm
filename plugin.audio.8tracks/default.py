@@ -33,7 +33,8 @@ Addon.log('plugin url: ' + Addon.plugin_url)
 Addon.log('plugin queries: ' + str(Addon.plugin_queries))
 Addon.log('plugin handle: ' + str(Addon.plugin_handle))
 
-et = EightTracks(Addon.get_setting('username'), Addon.get_setting('password'))
+et = EightTracks(Addon.get_setting('username'), 
+                 Addon.get_setting('password'))
 
 mode = Addon.plugin_queries['mode']
 play = Addon.plugin_queries['play']

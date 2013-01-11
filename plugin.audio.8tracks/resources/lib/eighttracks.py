@@ -35,6 +35,7 @@ class EightTracks:
     
     def __init__(self, username='', password=''):
         set_path = xbmc.translatePath(os.path.join(Addon.profile_path, 'set'))
+        self.user_id = 0
         try:
             os.makedirs(os.path.dirname(set_path))
         except OSError:
@@ -59,9 +60,6 @@ class EightTracks:
                 self.user_id = login['current_user']['id']
             else: 
                 Addon.show_error(['Invalid username or password.'])
-                self.user_id = 0
-        else:
-            self.user_id = 0
         Addon.log('user_id: %s' % self.user_id)
 
     def logged_in(self):
@@ -137,6 +135,8 @@ class EightTracks:
         json_response = None
         queries['api_key'] = self._API_KEY
         queries['api_version'] = 2
+        if self.user_id:
+            queries['user_token'] = self.user_id
         url = self._build_url(method + '.json', queries, https)
         Addon.log('getting ' + url)
         try:
@@ -181,6 +181,9 @@ class EightTracksPlayer(xbmc.Player):
 
     def onPlayBackStarted(self):
         Addon.log('onPlayBackStarted')
+        Addon.log('size: %d, pos: %d' % (self.pl.size(), self.pl.getposition()))
+        while self.pl.size() - self.pl.getposition() < 2:
+            self.add_next()
         return super(EightTracksPlayer, self).onPlayBackStarted()
         
     def onPlayBackStopped(self):
@@ -193,8 +196,19 @@ class EightTracksPlayer(xbmc.Player):
 
     def onQueueNextItem(self):
         Addon.log('onQueueNextItem')
-        self.add_next()
         return super(EightTracksPlayer, self).onQueueNextItem()
+
+    def OnPlayBackSpeedChanged(self):
+        Addon.log('OnPlayBackSpeedChanged')
+        return super(EightTracksPlayer, self).OnPlayBackSpeedChanged()
+
+    def OnPlayBackSeek(self):
+        Addon.log('OnPlayBackSeek')
+        return super(EightTracksPlayer, self).OnPlayBackSeek()
+
+    def OnPlayBackSeekChapter(self):
+        Addon.log('OnPlayBackSeekChapter')
+        return super(EightTracksPlayer, self).OnPlayBackSeekChapter()
         
     def play_mix(self, mix_id, mix_name, user, img):
         track_reported = False
@@ -205,8 +219,6 @@ class EightTracksPlayer(xbmc.Player):
         self.user = user
         self.img = img
         self.add_next(True)
-        #for the first time add two songs.
-        self.add_next()
         self.play(self.pl)
         while not self.ended:
             if self.isPlaying():
@@ -228,7 +240,7 @@ class EightTracksPlayer(xbmc.Player):
                 Addon.log('%02d:%02d / %02d:%02d' % (
                           self.getTime()/60, self.getTime()%60,
                           self.getTotalTime()/60, self.getTotalTime()%60))
-            Addon.log('player sleeping...')
+            Addon.log('player sleeping...zzz')
             xbmc.sleep(1000)
         
     def add_next(self, first=False):
@@ -256,4 +268,25 @@ class EightTracksPlayer(xbmc.Player):
                                         'comment': comment, 
                                         'album': t['release_name']},
                              img=self.img, playlist=self.pl)
+
+    ### function overrides #
+    def playnext(self):
+        Addon.log('Player - playnext')
+        return super(EightTracksPlayer, self).playnext()
+        
+    def playprevious(self):
+        Addon.log('Player - playprevious')
+        return super(EightTracksPlayer, self).playprevious()
+
+    def playselected(self):
+        Addon.log('Player - playselected')
+        return super(EightTracksPlayer, self).playselected()
+
+    def stop(self):
+        Addon.log('Player - stop')
+        return super(EightTracksPlayer, self).stop()
+
+    def pause(self):
+        Addon.log('Player - pause')
+        return super(EightTracksPlayer, self).pause()
 

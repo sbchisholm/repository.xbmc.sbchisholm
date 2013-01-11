@@ -1,3 +1,6 @@
+[B]Version 0.2.8[/B]
+- Changed the adding of new songs to always have one extra in the playlist
+
 [B]Version 0.2.7[/B]
 - Added song reporting for an 8tracks requirement.
 - Added user login and listing of liked mixes.
