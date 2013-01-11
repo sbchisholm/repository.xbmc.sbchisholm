@@ -135,8 +135,9 @@ class EightTracks:
         json_response = None
         queries['api_key'] = self._API_KEY
         queries['api_version'] = 2
-        if self.user_id:
-            queries['user_token'] = self.user_id
+        #if self.user_id:
+        #    queries['user_token'] = self.user_id
+        #queries['safe_browse'] = 0
         url = self._build_url(method + '.json', queries, https)
         Addon.log('getting ' + url)
         try:
@@ -171,12 +172,14 @@ class EightTracks:
             
             
 class EightTracksPlayer(xbmc.Player):
+    REPORTING_TIME = 30
+
     def __init__(self, *args, **kwargs):
         xbmc.Player.__init__(self)
         self.et = kwargs['et']
         self.pl = Addon.get_playlist(xbmc.PLAYLIST_MUSIC, True)
         self.ended = False
-        self.track_playing = False
+        self.track_reported = False
         self.track_id_lookup = {}
 
     def onPlayBackStarted(self):
@@ -209,10 +212,8 @@ class EightTracksPlayer(xbmc.Player):
     def OnPlayBackSeekChapter(self):
         Addon.log('OnPlayBackSeekChapter')
         return super(EightTracksPlayer, self).OnPlayBackSeekChapter()
-        
+
     def play_mix(self, mix_id, mix_name, user, img):
-        track_reported = False
-        reporting_time = 30 #seconds
         Addon.log('play_mix')
         self.mix_id = mix_id
         self.mix_name = mix_name
@@ -221,28 +222,34 @@ class EightTracksPlayer(xbmc.Player):
         self.add_next(True)
         self.play(self.pl)
         while not self.ended:
-            if self.isPlaying():
-                if not track_reported and self.getTime() >= reporting_time:
-                    try:
-                        Addon.log('report track here (track_id %d, mix_id %s)' % ( 
-                                  self.track_id_lookup[self.getPlayingFile()], 
-                                  self.mix_id))
-                        self.et.report_song(
-                            self.track_id_lookup[self.getPlayingFile()], self.mix_id)
-                        track_reported = True
-                    except KeyError:
-                        Addon.log('unable to report current playing file %s' % (
-                                self.getPlayingFile()))
-                if track_reported and self.getTime() < reporting_time:
-                    Addon.log('resetting the reported flag')
-                    # reset the reported flag for the next track
-                    track_reported = False
-                Addon.log('%02d:%02d / %02d:%02d' % (
-                          self.getTime()/60, self.getTime()%60,
-                          self.getTotalTime()/60, self.getTotalTime()%60))
-            Addon.log('player sleeping...zzz')
+            self.report_track()
+            Addon.log('player sleeping...')
             xbmc.sleep(1000)
-        
+
+    def report_track(self):
+        '''
+        Report the currently playing track after playback reaches 30 seconds.
+        '''
+        if not self.isPlaying():
+            return
+        if not self.track_reported and self.getTime() >= self.REPORTING_TIME:
+            try:
+                Addon.log('report track here (track_id %d, mix_id %s)' % ( 
+                          self.track_id_lookup[self.getPlayingFile()], 
+                          self.mix_id))
+                self.et.report_song(
+                    self.track_id_lookup[self.getPlayingFile()], self.mix_id)
+                self.track_reported = True
+            except KeyError:
+                Addon.log('unable to report current playing file %s' % (
+                        self.getPlayingFile()))
+        if self.track_reported and self.getTime() < self.REPORTING_TIME:
+            Addon.log('resetting the reported flag')
+            # reset the reported flag for the next track
+            self.track_reported = False
+        Addon.log('%02d:%02d / %02d:%02d' % (
+                  self.getTime()/60, self.getTime()%60,
+                  self.getTotalTime()/60, self.getTotalTime()%60))
     def add_next(self, first=False):
         Addon.log('add_next')
         if first:
