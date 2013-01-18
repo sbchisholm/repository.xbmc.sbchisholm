@@ -38,6 +38,9 @@ def log(msg, err=False):
         xbmc.log(addon.getAddonInfo('name') + ': ' + 
                  msg.encode('ascii','ignore'), xbmc.LOGDEBUG)
 
+def show_toaster(details, title, duration):
+    xbmc.executebuiltin('Notification(%s,%s,%d)' % (title, details, duration))
+
 def show_error(details):
     show_dialog(details, get_string(30000), True)
 
@@ -56,6 +59,9 @@ def show_dialog(details, title=None, is_error=False):
 def get_setting(setting):
     return addon.getSetting(setting)
     
+def set_setting(setting, value):
+    return addon.setSetting(setting, value)
+
 def get_string(string_id):
     return addon.getLocalizedString(string_id)   
 

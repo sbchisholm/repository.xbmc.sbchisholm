@@ -33,7 +33,7 @@ class EightTracks:
     SORT_RANDOM = 'random'
     SORT_LIKED = 'liked'
     
-    def __init__(self, username='', password=''):
+    def __init__(self, username='', password='', show_validation_error=False):
         set_path = xbmc.translatePath(os.path.join(Addon.profile_path, 'set'))
         self.user_id = 0
         try:
@@ -58,8 +58,8 @@ class EightTracks:
             login = self.login(username, password)
             if login['logged_in']:
                 self.user_id = login['current_user']['id']
-            else: 
-                Addon.show_error(['Invalid username or password.'])
+            elif show_validation_error: 
+                Addon.show_toaster('Error', 'Invalid username or password', 4000)
         Addon.log('user_id: %s' % self.user_id)
 
     def logged_in(self):

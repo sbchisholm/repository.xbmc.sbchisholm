@@ -33,12 +33,20 @@ Addon.log('plugin url: ' + Addon.plugin_url)
 Addon.log('plugin queries: ' + str(Addon.plugin_queries))
 Addon.log('plugin handle: ' + str(Addon.plugin_handle))
 
-et = EightTracks(Addon.get_setting('username'), 
-                 Addon.get_setting('password'))
-
 mode = Addon.plugin_queries['mode']
 play = Addon.plugin_queries['play']
 next = Addon.plugin_queries.get('next', None)
+
+if mode == 'main':
+  et = EightTracks(Addon.get_setting('username'), 
+                   Addon.get_setting('password'),
+                   show_validation_error=True)
+else:
+  et = EightTracks(Addon.get_setting('username'), 
+                   Addon.get_setting('password'),
+                   show_validation_error=False)
+
+
 
 if play:
     xbmc.Player().stop()
