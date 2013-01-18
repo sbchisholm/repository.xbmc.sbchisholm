@@ -155,6 +155,7 @@ class EightTracks:
                 return {'logged_in': False}
             else:
                 Addon.show_error([Addon.get_string(30006), str(e.reason)])
+                return False
         except urllib2.URLError, e:
             Addon.show_error([Addon.get_string(30006), str(e.reason)])
             return False

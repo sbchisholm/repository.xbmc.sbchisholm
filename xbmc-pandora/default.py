@@ -3,16 +3,16 @@ import xbmc
 import xbmcaddon
 import os, sys
 
-__title__ = "Pandora"
-__script_id__ = "script.xbmc.pandora"
+__title__ = "8tracks"
+__script_id__ = "script.xbmc.8tracks-xml"
 __settings__ = xbmcaddon.Addon(id=__script_id__)
 __version__ = "1.2.10-git"
 
-print "PANDORA: Initializing v%s" %__version__
-print "PANDORA: sys.platform = %s" %sys.platform
+print "8tracks: Initializing v%s" %__version__
+print "8tracks: sys.platform = %s" %sys.platform
 
 dlg = xbmcgui.DialogProgress()
-dlg.create( "PANDORA", "Loading Script..." )
+dlg.create( "8tracks", "Loading Script..." )
 dlg.update( 0 )
 
 from libpandora.pandora import Pandora, PandoraError
