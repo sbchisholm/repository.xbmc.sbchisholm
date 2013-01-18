@@ -56,9 +56,9 @@ class EightTracks:
         # get the user id
         if username and password:
             login = self.login(username, password)
-            if login['logged_in']:
+            if login and login['logged_in']:
                 self.user_id = login['current_user']['id']
-            elif show_validation_error: 
+            elif login and show_validation_error: 
                 Addon.show_toaster('Error', 'Invalid username or password', 4000)
         Addon.log('user_id: %s' % self.user_id)
 
