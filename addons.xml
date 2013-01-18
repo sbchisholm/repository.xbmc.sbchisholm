@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
 <addon id="plugin.audio.8tracks"
-  version="0.2.8"
+  version="0.2.9"
   name="8tracks"
   provider-name="Chisholm, Stephen">
     <requires>
@@ -15,6 +15,24 @@
         <description>8tracks is handcrafted internet radio. It offers a simple way for people to share and discover music through an online mix, a short playlist containing at least 8 tracks.</description>
         <platform>all</platform>
     </extension>
+</addon>
+
+<addon id="script.xbmc.pandora"
+       name="Pandora"
+       version="1.2.10-git"
+       provider-name="spbogie">
+  <requires>
+    <import addon="xbmc.python" version="1.0"/>
+  </requires>
+  <extension point="xbmc.python.script"
+             library="default.py">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Pandora Radio</summary>
+    <description lang="en">Pandora Internet Radio for XBMC.</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.audio.cbc-radio"
